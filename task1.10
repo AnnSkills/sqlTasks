@@ -1,0 +1,8 @@
+SELECT group_code
+FROM study_group a
+WHERE 2 <= (
+SELECT COUNT(*)
+	FROM study_group b
+	WHERE a.speciality = b.speciality
+)
+
