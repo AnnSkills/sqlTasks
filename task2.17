@@ -1,0 +1,6 @@
+SELECT s.detail_id, s.project_id, COUNT(*)
+FROM task2.supplies s
+JOIN task2.projects pr
+ON pr.project_id = s.project_id
+GROUP BY  s.project_id, detail_id
+
