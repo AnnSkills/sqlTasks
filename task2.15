@@ -1,0 +1,4 @@
+SELECT COUNT(*)
+FROM task2.supplies s
+WHERE provider_id = 'П1'
+
