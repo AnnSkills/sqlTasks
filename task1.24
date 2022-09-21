@@ -1,0 +1,9 @@
+SELECT group_code, subject_code
+FROM  "teach-subj" 
+WHERE subject_code NOT IN (SELECT subject_code
+			  FROM "teach-subj" ts
+			  WHERE ts.group_code = (SELECT group_code
+						 FROM study_group
+						  WHERE group_name ='АС-8')
+			  )
+			  
