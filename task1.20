@@ -1,0 +1,9 @@
+SELECT teacher_id
+FROM "teach-subj" ts
+JOIN teacher t
+ON t.personal_id = ts.teacher_id
+WHERE t.department = 'ЭВМ' AND 
+                              (SELECT speciality 
+                               FROM study_group
+			       WHERE group_code = ts.group_code) LIKE '%' || t.speciality ||'%' 
+			   
