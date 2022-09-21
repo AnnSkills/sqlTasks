@@ -1,0 +1,58 @@
+CREATE TABLE teacher
+(
+    id integer NOT NULL,
+    personal_id character varying(10) NOT NULL,
+    surname character varying(20),
+    job_title character varying(15),
+    department character varying(10),
+    speciality character varying(20),
+    phone text,
+    CONSTRAINT id PRIMARY KEY (id),
+    CONSTRAINT teacher_id UNIQUE (personal_id)
+)
+CREATE TABLE subject
+(
+    id integer NOT NULL,
+    subject_code character varying(5),
+    subject_name character varying(15),
+    hours integer,
+    speciality character varying(10),
+    semester integer,
+    CONSTRAINT id_sub PRIMARY KEY (id),
+    CONSTRAINT subject_code UNIQUE (subject_code),
+    CONSTRAINT semester_check CHECK (semester >= 1 AND semester <= 10)
+)
+CREATE TABLE study_group
+(
+    id integer NOT NULL,
+    group_code character varying(5) NOT NULL,
+    people_amount integer,
+    speciality character varying(20),
+    head_surname character varying(25) ,
+    group_name character varying(9),
+    CONSTRAINT group_id PRIMARY KEY (id),
+    CONSTRAINT code_of_group UNIQUE (group_code),
+    CONSTRAINT groupname_unique UNIQUE (group_name)
+)
+CREATE TABLE "teach-subj"
+(
+    id integer NOT NULL,
+    group_code character varying(5),
+    subject_code character varying(5),
+    teacher_id character varying(5),
+    audience_num integer,
+    CONSTRAINT id_techsub PRIMARY KEY (id),
+    CONSTRAINT group_code_fk FOREIGN KEY (group_code)
+        REFERENCES public.study_group (group_code) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT subj_code_fk FOREIGN KEY (subject_code)
+        REFERENCES public.subject (subject_code) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT teacher_code_fk FOREIGN KEY (teacher_id)
+        REFERENCES public.teacher (personal_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+
