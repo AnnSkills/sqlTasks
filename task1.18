@@ -1,0 +1,8 @@
+SELECT s.subject_name, s.subject_code, ts.teacher_id, ts.group_code
+FROM "teach-subj" ts
+JOIN subject s
+ON ts.subject_code = s.subject_code 
+WHERE ts.teacher_id IN (SELECT personal_id
+					  FROM teacher
+					  WHERE department = 'ЭВМ' AND speciality LIKE '%АСОИ%')
+					  
