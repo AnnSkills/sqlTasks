@@ -1,0 +1,7 @@
+SELECT pro.city AS "provider city", pr.city AS "project city"
+FROM task2.supplies s
+JOIN task2.providers pro
+ON pro.provider_id = s.provider_id
+JOIN task2.projects pr
+ON pr.project_id = s.project_id
+
