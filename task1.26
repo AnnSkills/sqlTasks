@@ -1,0 +1,6 @@
+SELECT teacher_id
+FROM "teach-subj" ts
+JOIN teacher t ON t.personal_id = ts.teacher_id
+JOIN study_group sg ON ts.group_code = sg.group_code
+WHERE sg.group_name = 'Э-15' AND ts.subject_code <> '12П'
+
