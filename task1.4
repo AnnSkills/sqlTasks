@@ -1,0 +1,7 @@
+SELECT s.subject_code, s.subject_name FROM "teach-subj" ts
+JOIN subject s
+ON ts.subject_code = s.subject_code
+JOIN teacher t
+ON ts.teacher_id = t.personal_id
+WHERE t.surname = 'Костин'
+
