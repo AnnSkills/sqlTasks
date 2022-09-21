@@ -1,0 +1,16 @@
+SELECT surname
+FROM teacher t
+WHERE t.personal_id IN (SELECT teacher_id
+			FROM "teach-subj" tt
+			WHERE tt.subject_code IN (SELECT subject_code
+						  FROM "teach-subj" tt
+						  WHERE teacher_id = (SELECT DISTINCT teacher_id
+								      FROM "teach-subj" ts12
+								      WHERE ts12.subject_code = '14П'
+								     )
+						)
+					) AND t.personal_id NOT IN(
+						                    SELECT DISTINCT teacher_id
+						                    FROM "teach-subj" ts12
+								    WHERE ts12.subject_code = '14П'
+							            )
