@@ -1,0 +1,6 @@
+SELECT ts.subject_code
+FROM "teach-subj" ts
+JOIN study_group sg
+ON sg.group_code = ts.group_code
+WHERE sg.group_name = 'АС-8'
+
