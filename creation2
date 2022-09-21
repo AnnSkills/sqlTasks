@@ -1,0 +1,172 @@
+CREATE TABLE task2.providers
+(
+    provider_id character varying(5) NOT NULL,
+    provider_name character varying(20),
+	status integer,
+    city character varying(20),
+    CONSTRAINT provider_id PRIMARY KEY (provider_id)
+)
+
+CREATE TABLE task2.details
+(
+    detail_id character varying(5) NOT NULL,
+	title character varying(20) NOT NULL,
+    color character varying(20),
+	detail_size integer,
+	city character varying(20),
+    CONSTRAINT detail_id PRIMARY KEY (detail_id)
+)
+CREATE TABLE task2.projects
+(
+    project_id character varying(5) NOT NULL,
+	title character varying(20) NOT NULL,
+	city character varying(20),
+    CONSTRAINT project_id  PRIMARY KEY (project_id)
+)
+CREATE TABLE task2.supplies 
+(
+    id integer NOT NULL,
+	provider_id character varying(5) NOT NULL,
+	detail_id character varying(5) NOT NULL,
+	project_id character varying(5) NOT NULL,
+	s integer, 
+    CONSTRAINT id_supplies PRIMARY KEY (id)
+,
+    CONSTRAINT provider_fk FOREIGN KEY (provider_id)
+        REFERENCES  task2.providers(provider_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT detail_fk FOREIGN KEY (detail_id)
+        REFERENCES task2.details(detail_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT project_fk FOREIGN KEY (project_id)
+        REFERENCES  task2.projects(project_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+INSERT INTO task2.providers(
+	provider_id, provider_name, status, city)
+	VALUES ('П1', 'Петров', 20, 'Москва');
+	INSERT INTO task2.providers(
+	provider_id, provider_name, status, city)
+	VALUES ('П2', 'Синицин', 10, 'Таллинн');
+	INSERT INTO task2.providers(
+	provider_id, provider_name, status, city)
+	VALUES ('П3', 'Федоров', 30, 'Таллинн');
+	INSERT INTO task2.providers(
+	provider_id, provider_name, status, city)
+	VALUES ('П4', 'Чаянов', 20, 'Минск');
+	INSERT INTO task2.providers(
+	provider_id, provider_name, status, city)
+	VALUES ('П5', 'Крюков', 30, 'Киев');
+	
+
+	INSERT INTO task2.details(
+	detail_id, title, color, detail_size, city)
+	VALUES ('Д1', 'Болт', 'Красный', 12, 'Москва');
+        INSERT INTO task2.details(
+	detail_id, title, color, detail_size, city)
+	VALUES ('Д2', 'Гайка', 'Зеленая', 17, 'Минск');
+        INSERT INTO task2.details(
+	detail_id, title, color, detail_size, city)
+	VALUES ('Д3', 'Диск', 'Черный', 17, 'Вильнюс');
+        INSERT INTO task2.details(
+	detail_id, title, color, detail_size, city)
+	VALUES ('Д4', 'Диск', 'Черный', 14, 'Москва');
+        INSERT INTO task2.details(
+	detail_id, title, color, detail_size, city)
+	VALUES ('Д5', 'Корпус', 'Красный', 12, 'Минск');
+        INSERT INTO task2.details(
+	detail_id, title, color, detail_size, city)
+	VALUES ('Д6', 'Крышки', 'Красный', 19, 'Москва');
+	
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР1', 'ИПР1', 'Минск');
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР2', 'ИПР2', 'Таллинн');
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР3', 'ИПР3', 'Псков');
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР4', 'ИПР4', 'Псков');
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР5', 'ИПР5', 'Москва');
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР6', 'ИПР6', 'Саратов');
+	INSERT INTO task2.projects(
+	project_id, title, city)
+	VALUES ('ПР7', 'ИПР7', 'Москва');
+	
+	
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (1,'П1', 'Д1', 'ПР1', 200);
+        INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (2,'П1', 'Д1', 'ПР2', 700);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (3,'П2', 'Д3', 'ПР1', 400);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (4,'П2', 'Д2', 'ПР2', 200);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (5,'П2', 'Д3', 'ПР3', 200);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (6,'П2', 'Д3', 'ПР4', 500);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (7,'П2', 'Д3', 'ПР6', 400);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (8,'П2', 'Д3', 'ПР7', 800);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (9,'П2', 'Д5', 'ПР2', 100);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (10,'П3', 'Д3', 'ПР1', 200);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (11,'П3', 'Д4', 'ПР2', 500);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (12,'П4', 'Д6', 'ПР3', 300);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (13,'П4', 'Д6', 'ПР7', 300);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (14,'П5', 'Д2', 'ПР2', 200);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (15,'П5', 'Д2', 'ПР4', 100);	
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (16,'П5', 'Д5', 'ПР5', 500);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (17,'П5', 'Д5', 'ПР7', 100);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (18,'П5', 'Д1', 'ПР2', 100);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (19,'П5', 'Д3', 'ПР4', 200);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (20,'П5', 'Д4', 'ПР4', 800);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (21,'П5', 'Д5', 'ПР4', 400);
+	INSERT INTO task2.supplies(
+	id, provider_id, detail_id, project_id, s)
+	VALUES (22,'П5', 'Д6', 'ПР4', 500);
