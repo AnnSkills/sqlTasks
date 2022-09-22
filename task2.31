@@ -1,0 +1,10 @@
+SELECT provider_id
+FROM task2.supplies 
+JOIN(
+  SELECT COUNT(DISTINCT detail_id), provider_id
+  FROM task2.supplies 
+  GROUP BY provider_id
+) AS "count" USING(provider_id)
+GROUP BY provider_id, count
+HAVING(count = 1)
+
