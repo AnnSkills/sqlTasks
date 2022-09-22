@@ -1,0 +1,6 @@
+SELECT DISTINCT detail_id
+FROM task2.projects pro
+JOIN task2.supplies s 
+ON s.project_id = pro.project_id
+WHERE pro.city = 'Лондон'
+
