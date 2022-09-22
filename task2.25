@@ -1,0 +1,8 @@
+SELECT s.project_id
+FROM task2.supplies s 
+JOIN task2.projects pro
+ON s.project_id = pro.project_id
+GROUP BY s.project_id, city
+ORDER BY city ASC 
+LIMIT 1
+

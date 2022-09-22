@@ -1,8 +1,0 @@
-SELECT DISTINCT (provider_id || '-'|| detail_id )
-FROM task2.details d, task2.providers pp
-WHERE NOT EXISTS(SELECT NULL
-                 FROM task2.supplies s1
-		 WHERE s1.provider_id = pp.provider_id AND s1.detail_id = d.detail_id
-		 )
-GROUP BY provider_id || '-'|| detail_id
-
