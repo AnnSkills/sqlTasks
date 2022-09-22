@@ -1,0 +1,18 @@
+SELECT s.project_id, sum.sum, average.round
+FROM task2.supplies s
+JOIN(
+  SELECT SUM(s), provider_id, project_id
+  FROM task2.supplies
+  WHERE detail_id = 'Д1'
+  GROUP BY provider_id, project_id
+) AS "sum" USING(provider_id, project_id)
+JOIN(
+  SELECT ROUND(AVG(s)), project_id
+  FROM task2.supplies 
+  WHERE detail_id = 'Д1'
+  GROUP BY project_id
+) AS "average" ON s.project_id = average.project_id
+WHERE detail_id = 'Д1'
+GROUP BY s.project_id, sum.sum, average.round
+HAVING (sum > average.round)
+
