@@ -1,0 +1,11 @@
+SELECT DISTINCT providers.city
+FROM task2.details , task2.providers, task2.projects
+WHERE EXISTS(SELECT provider_id
+	     FROM task2.supplies)
+		 OR
+		 EXISTS(SELECT detail_id
+		 FROM task2.supplies)
+		 OR
+		 EXISTS(SELECT project_id
+		 FROM task2.supplies)
+			 
